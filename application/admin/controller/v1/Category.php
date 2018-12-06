@@ -21,7 +21,13 @@ class Category extends Base
     }
 
     public function index(){
+        $result = $this->CategoryModel->getCateTree();
 
+        if($result){
+            return show(1,'');
+        }
+
+        return show(0,'');
     }
 
     public function read(){
