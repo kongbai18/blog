@@ -17,7 +17,7 @@ class ApiHandle extends Handle
      * @var int
      */
     public $httpCode = 500;
-    public $code = 0;
+    public $code = 1500;
 
     public function render(\Exception $e) {
 

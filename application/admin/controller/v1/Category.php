@@ -40,10 +40,10 @@ class Category extends Base
         $result = $this->CategoryModel->add($data);
 
         if($result){
-            return show(1,'');
+            return show(config('code.addSuccess'),'');
         }
 
-        return show(0,'');
+        return show(config('code.addFail'),'');
 
     }
 
