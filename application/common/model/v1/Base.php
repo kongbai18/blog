@@ -13,7 +13,7 @@ use think\Model;
 
 class Base extends Model
 {
-    protected $field = true;
+    protected  $field = true;
     protected  $autoWriteTimestamp = true;
 
 }

@@ -13,12 +13,7 @@ use app\common\model\v1\Category as CategoryModel;
 class Category extends CategoryModel
 {
     public function add($data){
-        try{
-            $this->allowField(true)->insert($data);
-        }catch (\Exception $e){
-            return false;
-        }
-        return true;
+        $this->allowField(true)->save($data);
     }
 
 }

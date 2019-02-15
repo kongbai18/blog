@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\wamp64\www\blog\public/../application/admin\view\category\index.html";i:1550126905;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_meta.html";i:1550128780;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_footer.html";i:1550128780;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\wamp64\www\blog\public/../application/admin\view\category\index.html";i:1550222667;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_meta.html";i:1550213127;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_footer.html";i:1550128780;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -25,7 +25,7 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 
-<title>H-ui.admin v3.1</title>
+<title>Ligo--后台</title>
 <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
@@ -44,7 +44,7 @@
 			<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 		</form>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="<?php echo url('category/add'); ?>"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加分类</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="<?php echo url('category/add'); ?>"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加分类</a></span> <span class="r">共有数据：<strong><?php echo count($cateData); ?></strong> 条</span> </div>
 	<table class="table table-border table-bordered table-bg">
 		<thead>
 		<tr>
@@ -52,20 +52,24 @@
 		</tr>
 		<tr class="text-c">
 			<th width="25"><input type="checkbox" name="" value=""></th>
-			<th width="40">ID</th>
-			<th width="200">权限名称</th>
-			<th>字段名</th>
+			<th width="80">ID</th>
+			<th>分类名称</th>
+			<th>分类别名</th>
+			<th>是否显示</th>
 			<th width="100">操作</th>
 		</tr>
 		</thead>
 		<tbody>
+		<?php if(is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): $i = 0; $__LIST__ = $cateData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$val): $mod = ($i % 2 );++$i;?>
 		<tr class="text-c">
-			<td><input type="checkbox" value="1" name=""></td>
-			<td>1</td>
-			<td>栏目添加</td>
-			<td></td>
-			<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('角色编辑','admin-permission-add.html','1','','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+			<td><input type="checkbox" value="<?php echo $val['cate_id']; ?>" name=""></td>
+			<td><?php echo $val['cate_id']; ?></td>
+			<td style="text-align: left"><?php echo str_repeat('-',4*$val['level']) ?><?php echo $val['cate_name']; ?></td>
+			<td><?php echo $val['cate_alias']; ?></td>
+			<td><?php echo $val['cate_alias']; ?></td>
+			<td><a title="编辑" href="<?php echo url('edit'); ?>?cateId=<?php echo $val['cate_id']; ?>" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 		</tr>
+		<?php endforeach; endif; else: echo "" ;endif; ?>
 		</tbody>
 	</table>
 </div>

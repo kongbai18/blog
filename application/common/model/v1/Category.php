@@ -51,11 +51,12 @@ class Category extends Base
     private function _getTree($data,$parentId=0,$level=0){
         static $ret =array();
         foreach($data as $k => $v){
-            if($v['parent_cate_id ']==$parentId){
+            //halt($v);
+            if($v->parent_cate_id == $parentId){
                 $v['level'] = $level;
                 $ret[] = $v;
                 //找子分类
-                $this->_getTree($data,$v['id'],$level+1);
+                $this->_getTree($data,$v->cate_id,$level+1);
             }
         }
         return $ret;

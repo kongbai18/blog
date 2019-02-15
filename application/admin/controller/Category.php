@@ -12,47 +12,70 @@ use app\admin\model\Category as CategoryModel;
 
 class Category extends Base
 {
-    private $CategoryModel;
-
-    public function _initialize()
-    {
-        parent::_initialize();
-        $this->CategoryModel = new CategoryModel();
-    }
-
     public function index(){
-        $result = $this->CategoryModel->getList();
+        $model = new CategoryModel();
+        $result = $model->getList();
 
         return $this->fetch('index',['cateData'=>$result]);
     }
 
-    public function read(){
-
-    }
-
     public function add(){
-        /*$data = input('post.');
+        $model = new CategoryModel();
 
-        //validate
-        $validate = validate('Category');
-        if(!$validate->check($data)){
-            return show(0,$validate->getError());
+        if($this->request->isPost()){
+            $data = input('post.');
+            //validate
+            $validate = validate('Category');
+            if(!$validate->check($data)){
+                $this->error($validate->getError());
+            }
+
+            try{
+                $model->add($data);
+            }catch (\Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            $this->success('添加分类成功','index');
+        }else{
+            $cateData = $model->getList();
+            return $this->fetch('',[
+                'cateData' => $cateData,
+            ]);
         }
-
-        $result = $this->CategoryModel->add($data);
-
-        if($result){
-            return show(config('code.addSuccess'),'');
-        }
-
-        return show(config('code.addFail'),'');*/
-
-        return $this->fetch();
-
     }
 
-    public function update(){
+    public function edit(){
+        $model = new CategoryModel();
 
+        if($this->request->isPost()){
+            $data = input('post.');
+            //validate
+            $validate = validate('Category');
+            if(!$validate->check($data)){
+                $this->error($validate->getError());
+            }
+
+            try{
+                $model->add($data);
+            }catch (\Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            $this->success('添加分类成功','index');
+        }else{
+            try{
+                $cateData = $model->getList();
+                $cateInfo = $model->find(input('get.cateId'));
+            }catch (\Exception $e){
+                $this->error($e->getMessage());
+            }
+
+            return $this->fetch('',[
+                'cateData' => $cateData,
+                'cateInfo' => $cateInfo,
+            ]);
+        }
     }
 
     public function delete(){
