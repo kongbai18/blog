@@ -2,22 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2019/1/21 0021
- * Time: 17:20
+ * Date: 2019/2/16
+ * Time: 12:54
  */
 
 namespace app\admin\model;
 
-use app\common\model\v1\Category as CategoryModel;
+use app\common\model\v1\Label as LabelModel;
 
-class Category extends CategoryModel
+class Label extends LabelModel
 {
     public function add($data){
+        var_dump($data);
         $this->allowField(true)->save($data);
     }
-    
+
     public function edit($data){
         $this->allowField(true)->update($data);
     }
-
 }

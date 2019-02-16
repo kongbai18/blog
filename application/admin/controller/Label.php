@@ -2,30 +2,31 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2018/12/6 0006
- * Time: 17:31
+ * Date: 2019/2/16
+ * Time: 12:53
  */
 
 namespace app\admin\controller;
 
-use app\admin\model\Category as CategoryModel;
+use app\admin\model\Label as LabelModel;
 
-class Category extends Base
+class Label extends Base
 {
     public function index(){
-        $model = new CategoryModel();
+        $model = new LabelModel();
         $result = $model->getList();
 
-        return $this->fetch('index',['cateData'=>$result]);
+        return $this->fetch('index',['labelData'=>$result]);
     }
 
     public function add(){
-        $model = new CategoryModel();
+        $model = new LabelModel();
 
         if($this->request->isPost()){
             $data = input('post.');
+
             //validate
-            $validate = validate('Category');
+            $validate = validate('Label');
             if(!$validate->check($data)){
                 $this->error($validate->getError());
             }
@@ -36,21 +37,18 @@ class Category extends Base
                 $this->error($e->getMessage());
             }
 
-            $this->success('添加分类成功','index');
+            $this->success('添加标签成功','index');
         }else{
-            $cateData = $model->getList();
-            return $this->fetch('',[
-                'cateData' => $cateData,
-            ]);
+            return $this->fetch();
         }
     }
 
     public function edit(){
-        $model = new CategoryModel();
+        $model = new LabelModel();
         if($this->request->isPost()){
             $data = input('post.');
             //validate
-            $validate = validate('Category');
+            $validate = validate('Label');
             if(!$validate->check($data)){
                 $this->error($validate->getError());
             }
@@ -61,23 +59,17 @@ class Category extends Base
                 $this->error($e->getMessage());
             }
 
-            $this->success('修改分类成功','index');
+            $this->success('修改标签成功','index');
         }else{
             try{
-                $cateData = $model->getList();
-                $cateInfo = $model->find(input('get.cateId'));
+                $labelInfo = $model->find(input('get.labelId'));
             }catch (\Exception $e){
                 $this->error($e->getMessage());
             }
 
             return $this->fetch('',[
-                'cateData' => $cateData,
-                'cateInfo' => $cateInfo,
+                'labelInfo' => $labelInfo,
             ]);
         }
-    }
-
-    public function delete(){
-
     }
 }
