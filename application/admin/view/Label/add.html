@@ -1,0 +1,88 @@
+﻿{include file="Public/_meta"}
+<article class="page-container">
+	<form action="{:url('add')}" method="post" class="form form-horizontal" id="form-article-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标签名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="label_name" name="label_name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">标签别名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="label_alias" name="label_alias">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="100" placeholder="" id="order_id" name="order_id">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">标签描述：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="label_description" id="cate_description" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+			</div>
+		</div>
+
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">是否显示：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="check-box">
+					<input type="checkbox" id="is_index" name="is_index" value="1">
+					<label for="checkbox-pinglun">&nbsp;</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+			 <button onClick="cate_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
+		     <a href="{:url('index')}" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</a>
+		    </div>
+	    </div>
+	</form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+{include file="Public/_footer"}
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+	function cate_save_submit(){
+	    var cateName = $('#cate_name').val(),
+			cateAlias = $('#cate_alias').val(),
+			parentCateId = $('#parent_cate_id').val(),
+			orderId = $('#order_id').val(),
+			cateDescription = $('#cate_description').val(),
+			isIndex = 0;
+        $.each($('input:checkbox'),function(){
+            if(this.checked){
+               isIndex = 1;
+            }
+        });
+        $.ajax({
+            type : "POST",
+            url : "{:url('add')}",
+            dataType : "json",
+		})
+		console.log(isIndex);
+	}
+
+	$(function(){
+		$('.skin-minimal input').iCheck({
+			checkboxClass: 'icheckbox-blue',
+			radioClass: 'iradio-blue',
+			increaseArea: '20%'
+		});
+	});
+
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

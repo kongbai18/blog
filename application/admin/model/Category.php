@@ -15,5 +15,9 @@ class Category extends CategoryModel
     public function add($data){
         $this->allowField(true)->save($data);
     }
+    
+    public function edit($data){
+        $this->allowField(true)->update($data);
+    }
 
 }

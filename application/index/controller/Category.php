@@ -23,7 +23,7 @@ class Category extends Base
     public function _initialize()
     {
         parent::_initialize();
-        $this->CategoryModel = new CategoryModel();
+
     }
 
     /**
@@ -32,7 +32,8 @@ class Category extends Base
      */
     public function index(){
         try{
-            $result = $this->CategoryModel->getList();
+            $model = new CategoryModel();
+            $result = $model->getTwoStage();
         }catch (\Exception $e){
             return show(0,'');
         }

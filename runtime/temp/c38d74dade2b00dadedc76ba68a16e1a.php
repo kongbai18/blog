@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:68:"D:\wamp64\www\blog\public/../application/admin\view\index\index.html";i:1550470824;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_meta.html";i:1550213127;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_header.html";i:1550211040;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_menu.html";i:1550123736;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_footer.html";i:1550128780;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:68:"D:\wamp64\www\blog\public/../application/admin\view\index\index.html";i:1550470824;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_meta.html";i:1550213127;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_header.html";i:1550211040;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_menu.html";i:1550470933;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_footer.html";i:1550128780;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -81,7 +81,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="<?php echo url('category/index'); ?>" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
-					<li><a data-href="article-list.html" data-title="标签管理" href="javascript:void(0)">标签管理</a></li>
+					<li><a data-href="<?php echo url('label/index'); ?>" data-title="标签管理" href="javascript:void(0)">标签管理</a></li>
 					<li><a data-href="article-list.html" data-title="文章管理" href="javascript:void(0)">文章管理</a></li>
 				</ul>
 			</dd>

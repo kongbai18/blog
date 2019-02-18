@@ -23,7 +23,7 @@ class Behavior
         if(in_array($origin, $allow_origin)) {
             header('Access-Control-Allow-Origin:' . $origin);
             header('Access-Control-Allow-Methods:POST,GET,PUT,DELETE,OPTIONS');
-            header('Access-Control-Allow-Headers:Accept,Referer,Host,Keep-Alive,User-Agent,X-Requested-With,Cache-Control,Content-Type,Cookie,token,timestamp,sign');
+            header('Access-Control-Allow-Headers:Accept,Referer,Host,Keep-Alive,User-Agent,X-Requested-With,Cache-Control,Content-Type,Cookie,token,timestamp,str,sign');
             header('Access-Control-Allow-Credentials:true');
 
             if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){

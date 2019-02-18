@@ -61,4 +61,32 @@ class Category extends Base
         }
         return $ret;
     }
+
+    public function getTwoStage(){
+        $filter['is_index'] = ['eq','1'];
+        // 排序规则
+        $sort = ['order_id' => 'asc'];
+
+        // 执行查询
+        $list = $this
+            ->where($filter)
+            ->order($sort)
+            ->select();
+
+
+        $rdata = [];
+        foreach ($list as $v){
+            if($v['parent_cate_id'] == 0){
+                $child = [];
+                foreach ($list as $v1){
+                    if($v1['parent_cate_id'] == $v['cate_id']){
+                        $child[] = $v1;
+                    }
+                }
+                $v['child'] = $child;
+                $rdata[] = $v;
+            }
+        }
+        return $rdata;
+    }
 }

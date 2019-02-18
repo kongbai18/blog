@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\wamp64\www\blog\public/../application/admin\view\category\index.html";i:1550222667;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_meta.html";i:1550213127;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_footer.html";i:1550128780;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\wamp64\www\blog\public/../application/admin\view\category\index.html";i:1550470933;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_meta.html";i:1550213127;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_footer.html";i:1550128780;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -55,6 +55,7 @@
 			<th width="80">ID</th>
 			<th>分类名称</th>
 			<th>分类别名</th>
+			<th>排序</th>
 			<th>是否显示</th>
 			<th width="100">操作</th>
 		</tr>
@@ -66,7 +67,8 @@
 			<td><?php echo $val['cate_id']; ?></td>
 			<td style="text-align: left"><?php echo str_repeat('-',4*$val['level']) ?><?php echo $val['cate_name']; ?></td>
 			<td><?php echo $val['cate_alias']; ?></td>
-			<td><?php echo $val['cate_alias']; ?></td>
+			<td><?php echo $val['order_id']; ?></td>
+			<td><?php echo $val['is_index']; ?></td>
 			<td><a title="编辑" href="<?php echo url('edit'); ?>?cateId=<?php echo $val['cate_id']; ?>" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 		</tr>
 		<?php endforeach; endif; else: echo "" ;endif; ?>

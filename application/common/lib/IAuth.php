@@ -19,7 +19,7 @@ class IAuth
      * @return boolen
      */
     public static function checkSignPass($data) {
-        $str = (new Aes())->encrypt($data['timestamp']);
+        $str = (new Aes())->encrypt($data['timestamp'].$data['str']);
         if($str != $data['sign']) {
             return false;
         }
@@ -32,6 +32,7 @@ class IAuth
         if (Cache::get($data['sign'])) {
             return false;
         }
+   
         return true;
     }
 }

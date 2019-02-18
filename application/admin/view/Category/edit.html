@@ -1,6 +1,7 @@
 {include file="Public/_meta"}
 <article class="page-container">
-    <form action="{:url('add')}" method="post" class="form form-horizontal" id="form-article-add">
+    <form action="{:url('edit')}" method="post" class="form form-horizontal" id="form-article-add">
+        <input type="hidden" name="cate_id" value="{$cateInfo.cate_id}">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -35,8 +36,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">分类描述：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="cate_description"  id="cate_description" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" value="{$cateInfo.cate_description}" onKeyUp="$.Huitextarealength(this,200)"></textarea>
-                <p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
+                <textarea name="cate_description"  id="cate_description" cols="" rows="" class="textarea"  placeholder="说点什么..." >{$cateInfo.cate_description}</textarea>
             </div>
         </div>
 

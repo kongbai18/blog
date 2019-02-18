@@ -47,7 +47,6 @@ class Category extends Base
 
     public function edit(){
         $model = new CategoryModel();
-
         if($this->request->isPost()){
             $data = input('post.');
             //validate
@@ -57,12 +56,12 @@ class Category extends Base
             }
 
             try{
-                $model->add($data);
+                $model->edit($data);
             }catch (\Exception $e){
                 $this->error($e->getMessage());
             }
 
-            $this->success('添加分类成功','index');
+            $this->success('修改分类成功','index');
         }else{
             try{
                 $cateData = $model->getList();

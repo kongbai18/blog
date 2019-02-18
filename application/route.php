@@ -13,3 +13,4 @@ use think\Route;
 
 Route::resource('index/v1/time','index/time',['only'=>['index']]);
 Route::resource('index/v1/category','index/category',['only'=>['index']]);
+Route::resource('index/v1/label','index/label',['only'=>['index']]);
