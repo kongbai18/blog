@@ -11,4 +11,5 @@
 
 use think\Route;
 
-Route::resource('admin/v1/category','admin/v1.category',['only'=>['index','read','save','update','delete']]);
+Route::resource('index/v1/time','index/time',['only'=>['index']]);
+Route::resource('index/v1/category','index/category',['only'=>['index']]);

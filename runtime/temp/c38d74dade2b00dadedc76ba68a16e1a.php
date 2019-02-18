@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:68:"D:\wamp64\www\blog\public/../application/admin\view\index\index.html";i:1550123860;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_meta.html";i:1550213127;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_header.html";i:1550211040;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_menu.html";i:1550123736;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_footer.html";i:1550128780;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:68:"D:\wamp64\www\blog\public/../application/admin\view\index\index.html";i:1550470824;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_meta.html";i:1550213127;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_header.html";i:1550211040;s:59:"D:\wamp64\www\blog\application\admin\view\Public\_menu.html";i:1550123736;s:61:"D:\wamp64\www\blog\application\admin\view\Public\_footer.html";i:1550128780;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -164,7 +164,7 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="我的桌面" data-href="welcome.html">我的桌面</span>
+					<span title="我的桌面" data-href="<?php echo url('welcome'); ?>">我的桌面</span>
 					<em></em></li>
 		</ul>
 	</div>
@@ -173,7 +173,7 @@
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-			<iframe scrolling="yes" frameborder="0" src="welcome.html"></iframe>
+			<iframe scrolling="yes" frameborder="0" src="<?php echo url('welcome'); ?>"></iframe>
 	</div>
 </div>
 </section>

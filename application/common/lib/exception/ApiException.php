@@ -14,13 +14,13 @@ class ApiException extends Exception
 {
     public $message = '';
     public $httpCode = 500;
-    public $code = config('code.sysError');
+    public $code = 1500;
     /**
      * @param string $message
      * @param int $httpCode
      * @param int $code
      */
-    public function __construct($code = config('code.sysError'),$message = '', $httpCode = 500) {
+    public function __construct($code = 1500,$message = '', $httpCode = 500) {
         $this->httpCode = $httpCode;
         $this->message = $message;
         $this->code = $code;
