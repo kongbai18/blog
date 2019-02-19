@@ -13,8 +13,8 @@
 
 namespace app\index\controller;
 
-<<<<<<< HEAD
-use app\common\lib\Aes;
+
+use app\common\lib\Tencentsms;
 
 class Test extends Base
 {
@@ -23,18 +23,9 @@ class Test extends Base
 
     }
 
-    public function index(){
-        $Aes = new Aes();
-        echo $Aes->encrypt('1550469127');
-=======
-use think\Cache;
-
-class Test extends Base
-{
-    public function index(){
-        Cache::set('name','ligo');
-        $name = Cache::get('name');
-        var_dump($name);
->>>>>>> 1baa4ac9f2002cc1b4230df787a571bab82c9230
+    public function index()
+    {
+        $data = Tencentsms::sendSms(865743,18720920196,config('tencent.registerId'));
+        var_dump($data);
     }
 }
