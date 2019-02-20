@@ -10,7 +10,6 @@ namespace app\common\lib;
 
 vendor('tencentsms.index');
 use Qcloud\Sms\SmsSingleSender;
-use traits\model\SoftDelete;
 
 class Tencentsms
 {
@@ -21,7 +20,6 @@ class Tencentsms
             $result = $ssender->sendWithParam("86", $phone, $templateId,
                 $params, config('tencent.sign'), "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
             $rsp = json_decode($result,true);
-            var_dump($rsp);
             if($rsp['result'] == 0){
                 return true;
             }else{

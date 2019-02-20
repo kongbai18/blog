@@ -3,14 +3,17 @@ CREATE TABLE `daishu_user` (
   `user_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户Id',
   `user_name` varchar(30) NOT NULL UNIQUE  COMMENT '用户名',
   `user_password` char(32) NOT NULL DEFAULT '' COMMENT '密码',
-  `user_phone` varchar(25) NOT NULL UNIQUE COMMENT '手机号',
-  `user_email` varchar(100) NOT NULL UNIQUE DEFAULT '0' COMMENT '邮箱',
-  `user_photo_url` varchar(150)  NOT NULL DEFAULT '100' COMMENT '头像',
+  `user_phone` varchar(25) NOT NULL default '' COMMENT '手机号',
+  `user_email` varchar(100) NOT NULL  DEFAULT '' COMMENT '邮箱',
+  `user_photo_url` varchar(150)  NOT NULL DEFAULT '' COMMENT '头像',
   `user_level` tinyint UNSIGNED NOT NULL DEFAULT 1 COMMENT '用户等级',
   `user_last_login_ip` varchar(25)  NOT NULL DEFAULT '' COMMENT '最后登陆IP',
   `user_last_login_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '最后登陆时间',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-   PRIMARY KEY (`user_id`)
+  `update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+   PRIMARY KEY (`user_id`),
+   key `user_phone`(`user_phone`),
+   key `user_email`(`user_email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 DROP TABLE IF EXISTS `daishu_article`;
