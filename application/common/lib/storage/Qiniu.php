@@ -63,7 +63,8 @@ class Qiniu
         $key = str_replace(array('+','/'),array('-','_'),$key);
         $remote_server = $remote_server.$key;
         $post_string = input('post.image.miniurl');
-        $post_string = substr($post_string,22);
+        $post_string = strstr($post_string,'base64,');
+        $post_string = substr($post_string,7);
 
         $auth  = new Auth(config('qiniu.ak'), config('qiniu.sk'));
         $upToken = $auth->uploadToken(config('qiniu.bucket'), null, 3600);//获取上传所需的token

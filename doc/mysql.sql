@@ -59,12 +59,11 @@ CREATE TABLE `daishu_category`(
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '分类表';
 
 DROP TABLE IF EXISTS `daishu_article_cate`;
-CREATE TABLE `daishu_article_cate`(
+CREATE TABLE `daishu_article_img`(
   `article_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '文章ID',
-  `cate_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '分类ID',
-  KEY `article_id`(`article_id`),
-  KEY `cate_id`(`cate_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '文章分类联系表';
+  `img_url` varchar(150)  NOT NULL DEFAULT '' COMMENT '文章内图片路径',
+  KEY `article_id`(`article_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '文章图片关联表';
 
 DROP TABLE IF EXISTS `daishu_label`;
 CREATE TABLE `daishu_label`(

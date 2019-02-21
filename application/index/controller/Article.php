@@ -30,11 +30,11 @@ class Article extends Base
 
         try{
             $model = new ArticleModel();
-            $model->add($data);
+            $data = $model->add($data);
         }catch (\Exception $e){
             throw new ApiException(1500,'系统错误');
         }
 
-        return show(1,'添加成功');
+        return show(1,'添加成功',$data);
     }
 }
