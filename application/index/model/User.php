@@ -14,7 +14,5 @@ class User extends UserModel
 {
     public function add($data){
         $this->allowField(true)->save($data);
-
-
     }
 }

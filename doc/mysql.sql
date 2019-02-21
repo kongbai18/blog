@@ -22,6 +22,7 @@ CREATE TABLE `daishu_article`(
   `article_tittle` varchar(255) NOT NULL DEFAULT '' COMMENT '文章标题',
   `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID',
   `article_content` text COMMENT '文章内容',
+  `article_cate_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '文章对应分类ID',
   `article_view_count` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '浏览量',
   `article_comment_count` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '评论数',
   `article_like_count` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点赞数',

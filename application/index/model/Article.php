@@ -12,5 +12,7 @@ use app\common\model\v1\Article as ArticleModel;
 
 class Article extends ArticleModel
 {
-
+    public function add($data){
+        $this->allowField(true)->save($data);
+    }
 }

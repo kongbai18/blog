@@ -25,7 +25,8 @@ class Test extends Base
 
     public function index()
     {
-        $data = Tencentsms::sendSms(865743,18720920196,config('tencent.registerId'));
-        var_dump($data);
+        $html = "<p><img src=\"http://pic.shimentown.com/2019/02/21/15507421579982333.png\" alt=\"微信图片_20181109150546.png\" /><img src=\"http://pic.shimentown.com/2019/02/21/15507425466567044.png\" alt=\"logo.png\" /></p>";
+        preg_match_all('/http:\/\/pic.shimentown.com.*?"/', $html, $matches);
+        var_dump($matches);
     }
 }

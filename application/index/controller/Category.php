@@ -8,6 +8,7 @@
 
 namespace app\index\controller;
 
+use app\common\lib\exception\ApiException;
 use app\index\model\Category as CategoryModel;
 
 class Category extends Base
@@ -41,7 +42,14 @@ class Category extends Base
         return show(1,'',$result);
     }
 
-    public function read(){
+    public function read($id){
+        try{
+            $model = new CategoryModel();
+            $data = $model->find($id);
+        }catch (\Exception $e){
+            throw new ApiException(1500,'系统错误!');
+        }
 
+        return show(1,'获取信息成功！',$data);
     }
 }
