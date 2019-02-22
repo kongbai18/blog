@@ -23,7 +23,7 @@ class Category extends Base
      */
     public function _initialize()
     {
-        parent::_initialize();
+        parent::checkRequestAuth();
 
     }
 

@@ -13,28 +13,61 @@ use app\index\model\Article as ArticleModel;
 
 class Article extends Base
 {
+    public function _initialize()
+    {
+        parent::checkRequestAuth();
+    }
+
     public function index(){
+        $data = input('get.');
         try{
             $model = new ArticleModel();
-            $data = $model->select();
+            $data = $model->getArticleList($data);
         }catch (\Exception $e){
-            throw new ApiException(1500,'系统错误');
+            throw new ApiException(1500,$e->getMessage());
         }
 
         return show(1,'获取成功',$data);
     }
 
-    public function save()
-    {
-        $data = input('post.');
-
+    public function read($id){
         try{
             $model = new ArticleModel();
-            $data = $model->add($data);
+            $data = $model->getArticleInfo($id);
         }catch (\Exception $e){
-            throw new ApiException(1500,'系统错误');
+            throw new ApiException(1500,$e->getMessage(),500);
         }
 
-        return show(1,'添加成功',$data);
+        return show(1,'获取信息成功',$data);
     }
+
+    public function save()
+    {
+        parent::checkLogin();
+
+        $data = input('post.');
+        $data['user_id'] = $this->userId;
+
+        $model = new ArticleModel();
+        $result = $model->add($data);
+        if ($result) {
+            return show(1, '添加成功');
+        }
+
+        return show(0, '添加失败');
+    }
+
+    public function getPersonalArticle(){
+        parent::checkLogin();
+        $data = input('post.');
+        $data['user_id'] = $this->userId;
+        try{
+            $model = new ArticleModel();
+            $result = $model->getArticleList($data);
+        }catch (\Exception $e){
+            throw new ApiException(1500,$e->getMessage(),500);
+        }
+        return show(1,'获取信息成功！',$result);
+    }
+
 }

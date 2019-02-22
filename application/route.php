@@ -23,3 +23,4 @@ Route::post('index/v1/logout','index/user/logout');
 Route::post('index/v1/register','index/user/register');
 Route::post('index/v1/sendsms','index/user/sendSms');
 Route::post('index/v1/upimage','index/image/upload');
+Route::post('index/v1/personalarticle','index/article/getPersonalArticle');

@@ -11,10 +11,12 @@ namespace app\index\model;
 use app\common\model\v1\Article as ArticleModel;
 use app\common\model\v1\ArticleImg;
 use app\common\lib\storage\Qiniu;
+use think\Db;
 
 class Article extends ArticleModel
 {
     public function add($data){
+        Db::startTrans();
         try{
             $this->allowField(true)->save($data);
             $articleId = $this->article_id;
@@ -37,6 +39,7 @@ class Article extends ArticleModel
                 $imgData[] = [
                     'article_id' => $articleId,
                     'img_url' => $v,
+                    'user_id' => $data['user_id'],
                 ];
             }
 
@@ -45,9 +48,11 @@ class Article extends ArticleModel
                 $articleImgModel->saveAll($imgData);
             }
         }catch (\Exception $e){
-            return $e->getMessage();
+            Db::rollnack();
+            return false;
         }
 
+        Db::commit();
         return true;
 
     }

@@ -12,6 +12,11 @@ use app\index\model\Label as LabelModel;
 
 class Label extends Base
 {
+    public function _initialize()
+    {
+        parent::checkRequestAuth();
+    }
+
     /**
      * 获取标签列表 返回数组
      * @return array

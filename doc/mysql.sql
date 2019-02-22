@@ -58,11 +58,14 @@ CREATE TABLE `daishu_category`(
   PRIMARY KEY (`cate_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '分类表';
 
-DROP TABLE IF EXISTS `daishu_article_cate`;
+DROP TABLE IF EXISTS `daishu_article_img`;
 CREATE TABLE `daishu_article_img`(
   `article_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '文章ID',
   `img_url` varchar(150)  NOT NULL DEFAULT '' COMMENT '文章内图片路径',
-  KEY `article_id`(`article_id`)
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户ID',
+  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间',
+  KEY `article_id`(`article_id`),
+  KEY `user_id`(`user_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '文章图片关联表';
 
 DROP TABLE IF EXISTS `daishu_label`;

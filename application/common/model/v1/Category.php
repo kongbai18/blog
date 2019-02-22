@@ -62,6 +62,9 @@ class Category extends Base
         return $ret;
     }
 
+    /*
+     * 获取分类的两级列表
+     */
     public function getTwoStage(){
         $filter['is_index'] = ['eq','1'];
         // 排序规则
@@ -88,5 +91,43 @@ class Category extends Base
             }
         }
         return $rdata;
+    }
+
+    /**
+     * 获取分类子集及本身
+     * @param $id 分类Id值
+     * @return array 返回集合数组
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getChildSelf($id){
+        //获得所有分类数据
+        $data = $this->getList();
+        $child = $this->_getChild($id,$data,true);
+        $child[] = $id;
+        return $child;
+    }
+
+    /**
+     * 获取分类子集
+     * @param $id 分类ID
+     * @param $data 分类所有集合
+     * @param bool $isClear
+     * @return array
+     */
+    private function _getChild($id,$data,$isClear = FALSE){
+        static $child = array();
+        if($isClear){
+            $child = [];
+        }
+        //循环从数据中找出子类
+        foreach($data as $k => $v){
+            if($v['parent_cate_id']==$id){
+                $child[] = $v['cate_id'];
+                $this->_getChild($v['cate_id'],$data,FALSE);
+            }
+        }
+        return $child;
     }
 }
