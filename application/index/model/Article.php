@@ -33,15 +33,15 @@ class Article extends ArticleModel
                     Qiniu::delete(substr($v,27));
                 }
             }
-
             $imgData = [];
-            foreach ($matches as $v){
+            foreach ($matches as $v1){
                 $imgData[] = [
                     'article_id' => $articleId,
-                    'img_url' => $v,
+                    'img_url' => $v1,
                     'user_id' => $data['user_id'],
                 ];
             }
+
 
             if(!empty($imgData)){
                 $articleImgModel = new ArticleImg();
