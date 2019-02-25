@@ -34,7 +34,7 @@ class Category extends Base
     public function index(){
         try{
             $model = new CategoryModel();
-            $result = $model->getTwoStage();
+            $result = $model->getList();
         }catch (\Exception $e){
             return show(0,'');
         }
@@ -51,5 +51,16 @@ class Category extends Base
         }
 
         return show(1,'获取信息成功！',$data);
+    }
+
+    public function getTwoStage(){
+        try{
+            $model = new CategoryModel();
+            $result = $model->getTwoStage();
+        }catch (\Exception $e){
+            return show(0,'');
+        }
+
+        return show(1,'',$result);
     }
 }

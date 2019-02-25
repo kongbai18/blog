@@ -25,12 +25,12 @@ class User extends Base
         $model = new UserModel();
         $userId = Session::get('blog.user_session');
         try{
-            $user = $model->find($userId);
+            $data = $model->getUserInfo($userId);
         }catch (\Exception $e){
-            throw new ApiException(1500,'系统错误');
+            throw new ApiException(1500,$e->getMessage());
         }
 
-        return show(1,'获取信息成功',['user_name'=>$user['user_name'],'user_url'=>$user['user_photo_url']]);
+        return show(1,'获取信息成功',$data);
     }
 
     public function login(){

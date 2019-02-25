@@ -88,3 +88,24 @@ CREATE TABLE `daishu_article_label`(
   KEY `article_id`(`article_id`),
   KEY `label_id`(`label_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT '文章标签联系表';
+
+DROP TABLE IF EXISTS `daishu_user_concern`;
+CREATE TABLE `daishu_user_concern`(
+  `concern_user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '关注用户ID',
+  `concerned_user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '被关注用户ID',
+  KEY `concern_user_id`(`concern_user_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='用户关注用户表';
+
+DROP TABLE IF EXISTS `daishu_user_cate`;
+CREATE TABLE `daishu_user_cate`(
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '关注用户ID',
+  `cate_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '被关注话题ID',
+  KEY `user_id`(`user_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='用户关注话题表';
+
+DROP TABLE IF EXISTS `daishu_user_article`;
+CREATE TABLE `daishu_user_article`(
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '关注用户ID',
+  `article_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '点赞文章ID',
+  KEY `user_id`(`user_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8 COMMENT='用户点赞文章表';
