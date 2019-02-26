@@ -11,13 +11,14 @@ namespace app\index\controller;
 use app\index\model\User as UserModel;
 use app\common\lib\exception\ApiException;
 use app\common\lib\Tencentsms;
+use app\common\lib\IAuth;
 use think\Session;
 
 class User extends Base
 {
     public function _initialize()
     {
-        //parent::checkRequestAuth();
+        parent::checkRequestAuth();
     }
 
     public function index(){
@@ -25,7 +26,18 @@ class User extends Base
         $model = new UserModel();
         $userId = Session::get('blog.user_session');
         try{
-            $data = $model->getUserInfo($userId);
+            $data = $model->getUserInfo($userId,true);
+        }catch (\Exception $e){
+            throw new ApiException(1500,$e->getMessage());
+        }
+
+        return show(1,'获取信息成功',$data);
+    }
+
+    public function read($id){
+        $model = new UserModel();
+        try{
+            $data = $model->getUserInfo($id);
         }catch (\Exception $e){
             throw new ApiException(1500,$e->getMessage());
         }
@@ -49,7 +61,7 @@ class User extends Base
         }
 
         if($user){
-            if($user['user_password'] == $data['user_password']){
+            if($user['user_password'] == IAuth::setPassword($data['user_password'])){
                 $udata = [
                     'user_id' => $user['user_id'],
                     'user_last_login_time' => time(),
@@ -64,12 +76,14 @@ class User extends Base
 
                 Session::set('blog.user_session',$user['user_id']);
                 return show(1,'登陆成功',['user_name'=>$user['user_name'],'user_url'=>$user['user_photo_url']]);
+            }else{
+                return show(0,'密码错误!');
             }
         }else{
-            return show(0,'用户不存在');
+            return show(0,'用户不存在!');
         }
 
-        return show(0,'登陆失败');
+        return show(0,'登陆失败!');
 
     }
 
@@ -114,6 +128,8 @@ class User extends Base
 
         try{
             $model = new UserModel();
+            $data['user_photo_url'] = 'http://pic.shimentown.com/header'.rand(1,10).'.jpg';
+            $data['user_password'] = IAuth::setPassword($data['user_password']);
             $model->add($data);
         }catch (\Exception $e){
             return show(0,$e->getMessage(),[],500);

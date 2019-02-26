@@ -13,6 +13,15 @@ use think\Cache;
 class IAuth
 {
     /**
+     * 设置密码
+     * @param string $data
+     * @return string
+     */
+    public static  function setPassword($data) {
+        return md5($data.config('dishu.password_key'));
+    }
+
+    /**
      * 检查sign是否正常
      * @param array $data
      * @param $data

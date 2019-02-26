@@ -16,27 +16,32 @@ class User extends UserModel
         $this->allowField(true)->save($data);
     }
 
-    public function getUserInfo($userId){
+    public function getUserInfo($userId,$moreInfo = false){
         //基本信息
-        $user = $this->field('user_name,user_photo_url,concern_count,fans_count,like_count,content_count')->find($userId);
+        $user = $this->field('user_id,user_name,user_photo_url,concern_count,fans_count,like_count,content_count,brief')->find($userId);
 
-        //关注用户信息
-        $UserConcernModel = new UserConcern();
-        $userConcern = $UserConcernModel->getUserConcern($userId);
+        if($moreInfo){
+            //关注用户信息
+            $UserConcernModel = new UserConcern();
+            $userConcern = $UserConcernModel->getUserConcern($userId);
 
-        //关注话题信息
-        $UserCateModel = new UserCate();
-        $userCate = $UserCateModel->getUserCate($userId);
+            //关注话题信息
+            $UserCateModel = new UserCate();
+            $userCate = $UserCateModel->getUserCate($userId);
 
-        //喜欢文章信息
-        $UserArticleModel = new UserArticle();
-        $userArticle = $UserArticleModel->getUserArticle($userId);
+            //喜欢文章信息
+            $UserArticleModel = new UserArticle();
+            $userArticle = $UserArticleModel->getUserArticle($userId);
 
-        return [
-            'user' => $user,
-            'userConcern' => $userConcern,
-            'userCate' => $userCate,
-            'userArticle' => $userArticle,
-        ];
+            return [
+                'user' => $user,
+                'userConcern' => $userConcern,
+                'userCate' => $userCate,
+                'userArticle' => $userArticle,
+            ];
+        }else{
+            return $user;
+        }
+
     }
 }

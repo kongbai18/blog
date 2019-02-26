@@ -96,7 +96,12 @@ class Article extends Base
             ->find($id);
 
         if($data){
-            return $data;
+            $commentModel = new Comment();
+            $commentData = $commentModel->getCommentList($id);
+            return [
+                'article' => $data,
+                'comment' => $commentData,
+            ];
         }
 
         throw new ApiException(1404,'不存在',404);
